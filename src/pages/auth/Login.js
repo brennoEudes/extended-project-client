@@ -28,11 +28,14 @@ function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
+// abaixo, alterei "/login" para "/user/login"
     try {
-      const response = await api.post("/login", state);
+      const response = await api.post("/user/login", state);
       console.log(response);
 
       authContext.setLoggedInUser({ ...response.data });
+
+      //armazena os dados do usuário no frontend, evitando sucessivos logins.
       localStorage.setItem(
         "loggedInUser",
         JSON.stringify({ ...response.data })

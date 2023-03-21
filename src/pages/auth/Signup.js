@@ -22,8 +22,9 @@ function Signup(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
+// abaixo, alterei "/signup" para "/user/signup"
     try {
-      const response = await api.post("/signup", state);
+      const response = await api.post("/user/signup", state); 
       setErrors({ name: "", password: "", email: "" });
       navigate("/login");
     } catch (err) {

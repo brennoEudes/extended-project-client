@@ -6,6 +6,7 @@ function AuthContextComponent(props) {
   const [loggedInUser, setLoggedInUser] = useState({ token: "", user: {} });
   const [loading, setLoading] = useState(true);
 
+  // função para verificar e armazenar os dados do usuário logado no front.
   useEffect(() => {
     const storedUser = localStorage.getItem("loggedInUser");
 
