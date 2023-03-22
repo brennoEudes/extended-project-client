@@ -1,10 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {AuthContext} from "../contexts/authContext.js";
+
 import api from "../apis/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
   const [books, setBooks] = useState([]);
+
+  const navigate = useNavigate();
+
+  const {setLoggedInUser} = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +27,14 @@ function Home() {
     }
     fetchBook();
   }, []);
-console.log (books)
+
+  function handleLoggout () {
+    localStorage.removeItem("loggedInUser")
+    setLoggedInUser(null);
+    navigate("/login")
+  }
+
+
   return (
     <>
       {!isLoading && (
@@ -42,6 +55,11 @@ console.log (books)
                 </div>
               )
             })}
+
+            <div className="d-flex flex-column align-items-center">
+            <button variant="danger" onClick={handleLoggout}>Exit</button>
+          </div>
+          
         </div>
       )}
     </>
