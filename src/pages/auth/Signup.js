@@ -12,15 +12,15 @@ function Signup(props) {
 
   const navigate = useNavigate();
 
-  function handleChange(event) {
+  function handleChange(e) {
     setState({
       ...state,
-      [event.currentTarget.name]: event.currentTarget.value,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
 // abaixo, alterei "/signup" para "/user/signup"
     try {

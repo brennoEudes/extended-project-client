@@ -2,27 +2,32 @@ import { useState } from "react";
 import api from "../../apis/api";
 import { useNavigate } from "react-router-dom";
 
-
 function CreateBook() {
-  const [form, setForm] = useState({ title: "", genre: "" });
+  const [form, setForm] = useState({
+    title: "",
+    author: "",
+    synopsis: "",
+    releaseYear: 0,
+    genre: "",
+    coverImage: "",
+  });
+
   const navigate = useNavigate();
 
-  // esse "e" ao invés de "event", pode ser um problema?
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  function handleChange(event) {
+    setForm({ ...form, [event.target.name]: event.target.value });
   }
 
-  async function handleSubmit (e) {
-    e.preventDefault()
+  async function handleSubmit(event) {
+    event.preventDefault();
 
     try {
-        api.post("/book", form);
-        navigate("/");
-
+      const response = api.post("/book/create-book", form);
+      console.log(response);
+      navigate("/");
     } catch (err) {
-        console.log (err)
+      console.log(err);
     }
-
   }
 
   return (
@@ -72,7 +77,7 @@ function CreateBook() {
 
         <h2>coverImage!</h2>
 
-        <button>Create book!</button>
+        <button type="submit">Create book!</button>
       </form>
     </>
   );
