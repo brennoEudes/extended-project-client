@@ -28,7 +28,7 @@ fetchBook();
       <h1>Library</h1>
       <p>Read all books as posible! Enjoy!</p>
       <div className="d-flex flex-column align-items-center">
-        <Link className="btn btn-lg btn-primary" to="/auth/signup">
+        <Link className="btn btn-lg btn-primary" to="/create-book">
           Create book!
         </Link>
       </div>
