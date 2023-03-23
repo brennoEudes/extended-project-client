@@ -32,7 +32,7 @@ function Home() {
     fetchBook();
   }, []);
 
-  console.log (books)
+  console.log(books);
 
   function handleLoggout() {
     localStorage.removeItem("loggedInUser");
@@ -41,34 +41,38 @@ function Home() {
   }
 
   // {loggedInUser.user ? (<p>{loggedInUser.user.name}</p>) :  <link>login</link>}
-  
+
   return (
     <>
       {!isLoading && (
         <div className="text-center">
-          <h1>Library</h1>
-          <p>See your special library and enjoy!</p>
+          <h1>See your special library and enjoy!</h1>
           <div className="d-flex flex-column align-items-center">
             <Link to="/create-book">
-            <Button variant="primary">Create book</Button>{' '}
+              <Button variant="primary">Create book</Button>{" "}
             </Link>
           </div>
 
           {books.map((currentBook) => {
             return (
               <div key={currentBook._id}>
-              <img src={currentBook.coverImage} alt="coverImage" />
+                <img src={currentBook.coverImage} alt="coverImage" />
                 <h2>{currentBook.title}</h2>
                 <p>{currentBook.genre}</p>
-                <p> <Link to={`/book-details/${currentBook._id}`}>
-              <Button variant="info">See Details</Button>{" "}
-            </Link></p>
+                <p>
+                  {" "}
+                  <Link to={`/book-details/${currentBook._id}`}>
+                    <Button variant="info">See Details</Button>{" "}
+                  </Link>
+                </p>
               </div>
             );
           })}
 
           <div className="d-flex flex-column align-items-center">
-            <Button variant="danger" onClick={handleLoggout}>Exit</Button>{' '}
+            <Button variant="danger" onClick={handleLoggout}>
+              Exit
+            </Button>{" "}
           </div>
         </div>
       )}
