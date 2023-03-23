@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
-import {AuthContext} from "../contexts/authContext.js";
+import { AuthContext } from "../contexts/authContext.js";
 
 import api from "../apis/api";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ function Home() {
 
   const navigate = useNavigate();
 
-  const {setLoggedInUser} = useContext(AuthContext);
+  const { setLoggedInUser } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,12 +28,11 @@ function Home() {
     fetchBook();
   }, []);
 
-  function handleLoggout () {
-    localStorage.removeItem("loggedInUser")
+  function handleLoggout() {
+    localStorage.removeItem("loggedInUser");
     setLoggedInUser(null);
-    navigate("/login")
+    navigate("/login");
   }
-
 
   return (
     <>
@@ -48,18 +47,19 @@ function Home() {
           </div>
 
           {books.map((currentBook) => {
-              return (
-                <div key={currentBook._id}>
+            return (
+              <div key={currentBook._id}>
                 <h2>{currentBook.title}</h2>
                 <p>{currentBook.genre}</p>
-                </div>
-              )
-            })}
+              </div>
+            );
+          })}
 
-            <div className="d-flex flex-column align-items-center">
-            <button variant="danger" onClick={handleLoggout}>Exit</button>
+          <div className="d-flex flex-column align-items-center">
+            <button variant="danger" onClick={handleLoggout}>
+              Exit
+            </button>
           </div>
-          
         </div>
       )}
     </>

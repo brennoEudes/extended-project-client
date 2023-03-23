@@ -2,7 +2,6 @@ import { useState } from "react";
 import api from "../../apis/api";
 import { useNavigate } from "react-router-dom";
 
-
 function CreateBook() {
   const [form, setForm] = useState({
     title: "",
@@ -13,17 +12,37 @@ function CreateBook() {
     coverImage: "",
   });
 
+  const [img, setImg] = useState("");
+
   const navigate = useNavigate();
 
   function handleChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
+  function handleImage(event) {
+    setImg(event.target.files[0]);
+  }
+
+  async function handleUploadImage(event) {
+    const uploadData = new FormData();
+
+    uploadData.append("picture", img);
+
+    const response = await api.post("/book/upload-image", uploadData);
+    return response.data.url;
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const response = api.post("/book/create-book", form);
+      const imgUrl = await handleUploadImage();
+
+      const response = api.post("/book/create-book", {
+        ...form,
+        coverImage: imgUrl,
+      });
       console.log(response);
       navigate("/");
     } catch (err) {
@@ -74,6 +93,14 @@ function CreateBook() {
           name="genre"
           value={form.genre}
           onChange={handleChange}
+        />
+
+        <label>Cover Image:</label>
+        <input
+          type="file"
+          name="coverImage"
+          value={form.coverImage}
+          onChange={handleImage}
         />
 
         <h2>coverImage!</h2>
