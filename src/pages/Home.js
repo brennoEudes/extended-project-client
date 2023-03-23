@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/authContext.js";
+import { Button } from "react-bootstrap";
 
 import api from "../apis/api";
 import { Link, useNavigate } from "react-router-dom";
@@ -39,7 +40,7 @@ function Home() {
       {!isLoading && (
         <div className="text-center">
           <h1>Library</h1>
-          <p>Read all books as posible! Enjoy!</p>
+          <p>See your library and enjoy!</p>
           <div className="d-flex flex-column align-items-center">
             <Link className="btn btn-lg btn-primary" to="/create-book">
               Create book!
@@ -51,6 +52,9 @@ function Home() {
               <div key={currentBook._id}>
                 <h2>{currentBook.title}</h2>
                 <p>{currentBook.genre}</p>
+                <p> <Link to={`/book-details/`}> {/* o q entra aqui para identificar o book? */}
+              <Button variant="outline-primary">See More</Button>{" "}
+            </Link></p>
               </div>
             );
           })}

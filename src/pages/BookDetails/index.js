@@ -38,11 +38,6 @@ function BookDetails () {
             <h1>Book Details</h1>
 
             <div className="container">
-        <div className="btn-home">
-          <Link to="/">
-            <Button variant="outline-primary">Home</Button>{" "}
-          </Link>
-        </div>
         <div className="">
         <img className="" src={detail.image} alt={detail.name} />
           <h1 className="">{detail.name}</h1>
@@ -56,7 +51,7 @@ function BookDetails () {
 
             <div className="">
               <div className="">
-                <Link to={`/edit/${params.detailId}`}>
+                <Link to={`/book-edit/${params.detailId}`}>
                   <Button variant="warning">Edit</Button>{" "}
                 </Link>
                 <Button onClick={handleDelete} variant="danger">
