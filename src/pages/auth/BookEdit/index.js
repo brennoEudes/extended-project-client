@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../../../apis/api";
 import { useNavigate, useParams} from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import BookForm from "../../../components/BookForm/style.modules.css";
 
 function BookEdit() {
   const [book, setBook] = useState({
@@ -49,11 +50,11 @@ function BookEdit() {
 
   return (
     <>
-      <div className="">
-        <div className="">
-          <h1 className="">Edit your book!</h1>
+      <div className="container">
+        <div className="bookForm">
+          <h1 className="bookFormHeader">Edit your book!</h1>
 
-          <form className="" onSubmit={handleSubmit}>
+          <form className="bookFormFields" onSubmit={handleSubmit}>
             <label htmlFor="input-title">Title:</label>
             <input
               id="input-title"
@@ -102,7 +103,7 @@ function BookEdit() {
               value={book.coverImage}
               onChange={handleChange}
             />
-            <div className="btn-save">
+            <div className="btn-actionsBook">
               <Button type="submit" variant="primary" size="lg">
                 Save
               </Button>

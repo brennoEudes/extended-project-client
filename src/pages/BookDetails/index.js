@@ -37,8 +37,9 @@ function BookDetails() {
   return (
     <>
       <div className="container">
-        <h1 className="bookFormHeader">Book Details</h1>
+        
         <div className="bookForm">
+        <h1 className="bookFormHeader">Book Details</h1>
           <div className="bookFormFields">
             <div className="coverBook">
               <img src={detail.coverImage} alt="coverImage" />
@@ -48,7 +49,7 @@ function BookDetails() {
             <p>Synopsis: {detail.synopsis}</p>
             <p>Release Year: {detail.releaseYear}</p>
             <p>Genre: {detail.genre}</p>
-            <div className="btn-editBook">
+            <div className="btn-actionsBook">
               <Link to={`/book-edit/${detail._id}`}>
                 <Button variant="warning">Edit</Button>{" "}
               </Link>

@@ -116,7 +116,7 @@ function CreateBook() {
               value={form.coverImage}
               onChange={handleImage}
             />
-            <div className="btn-createBook">
+            <div className="btn-actionsBook">
               <Button type="submit" variant="primary" size="lg">
                 Create book
               </Button>{" "}
