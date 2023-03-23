@@ -9,13 +9,15 @@ function BookDetails () {
     const params = useParams();
     const navigate = useNavigate();
     const [detail, setDetail] = useState({});
+
+    console.log(params)
   
     useEffect(() => {
       async function fetchDetail() {
         try {
-          const response = await api.get(`/book/:bookId/${params.detailId}`);
+          const response = await api.get(`/book/${params.bookId}`);
           console.log(response);
-          setDetail(response.data.data.attributes);
+          setDetail(response.data);
         } catch (err) {
           console.log(err);
         }
@@ -25,7 +27,7 @@ function BookDetails () {
   
     async function handleDelete() {
       try {
-        const response = await api.delete(`/book/:bookId/${params.detailId}`);
+        const response = await api.delete(`/book/${params.bookId}`);
         console.log(response);
         navigate("/");
       } catch (err) {
@@ -46,12 +48,12 @@ function BookDetails () {
             <p>Author: {detail.author}</p>
             <p>Synopsis: {detail.synopsis}</p>
             <p>Release Year: {detail.releaseYear}</p>
-            <p>Genre: {detail.aceleration}</p>
-            <p>Cover Image: {detail.coverImage}</p>
+            <p>Genre: {detail.genre}</p>
+            <img src={detail.coverImage} alt="coverImage" />
 
             <div className="">
               <div className="">
-                <Link to={`/book-edit/${params.detailId}`}>
+                <Link to={`/book-edit/${detail._id}`}>
                   <Button variant="warning">Edit</Button>{" "}
                 </Link>
                 <Button onClick={handleDelete} variant="danger">

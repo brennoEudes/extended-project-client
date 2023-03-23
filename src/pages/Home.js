@@ -29,6 +29,8 @@ function Home() {
     fetchBook();
   }, []);
 
+  console.log (books)
+
   function handleLoggout() {
     localStorage.removeItem("loggedInUser");
     setLoggedInUser(null);
@@ -50,9 +52,10 @@ function Home() {
           {books.map((currentBook) => {
             return (
               <div key={currentBook._id}>
+              <img src={currentBook.coverImage} alt="coverImage" />
                 <h2>{currentBook.title}</h2>
                 <p>{currentBook.genre}</p>
-                <p> <Link to={`/book-details/`}> {/* o q entra aqui para identificar o book? */}
+                <p> <Link to={`/book-details/${currentBook._id}`}> {/* o q entra aqui para identificar o book? */}
               <Button variant="outline-primary">See More</Button>{" "}
             </Link></p>
               </div>

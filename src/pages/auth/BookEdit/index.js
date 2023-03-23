@@ -16,10 +16,10 @@ function BookEdit() {
   useEffect(() => {
     async function fetchSale() {
       try {
-        const response = await api.get(`/book/:bookId/${params.editId}`);
+        const response = await api.get(`/book/${params.bookId}`);
         console.log(response);
 
-        setBook(response.data.data.attributes);
+        setBook(response.data);
       } catch (err) {
         // console.log(err);
       }
@@ -39,9 +39,7 @@ function BookEdit() {
   async function handleSubmit(event) {
     try {
       event.preventDefault();
-      let obj = { data: { ...book } };
-
-      await api.put(`/book/:bookId/${params.editId}`, obj);
+      await api.put(`/book/${params.bookId}`, {...book});
 
       navigate("/");
     } catch (err) {
