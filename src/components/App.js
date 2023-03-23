@@ -11,17 +11,29 @@ import BookEdit from "../pages/auth/BookEdit";
 
 import { AuthContextComponent } from "../contexts/authContext";
 
+import NavBar from "./NavBar";
+import { Footer } from "./Footer";
+import "./App.css";
+
 function App() {
   return (
     <AuthContextComponent>
+      <NavBar />
       <Routes>
         <Route path="/" element={<ProtectedRoute component={Home} />} />
-        <Route path="/create-book" element={<ProtectedRoute component={CreateBook} />} />
-        <Route path="/book-edit/:bookId" element={<ProtectedRoute component={BookEdit} />} />
-        <Route path="/book-details/:bookId" element={< BookDetails />} />
+        <Route
+          path="/create-book"
+          element={<ProtectedRoute component={CreateBook} />}
+        />
+        <Route
+          path="/book-edit/:bookId"
+          element={<ProtectedRoute component={BookEdit} />}
+        />
+        <Route path="/book-details/:bookId" element={<BookDetails />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </AuthContextComponent>
   );
 }

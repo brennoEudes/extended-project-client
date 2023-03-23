@@ -48,10 +48,10 @@ function Home() {
       {!isLoading && (
         <div className="text-center">
           <h1>Library</h1>
-          <p>See your library and enjoy!</p>
+          <p>See your special library and enjoy!</p>
           <div className="d-flex flex-column align-items-center">
-            <Link className="btn btn-lg btn-primary" to="/create-book">
-              Create book!
+            <Link to="/create-book">
+            <Button variant="primary">Create book</Button>{' '}
             </Link>
           </div>
 
@@ -61,8 +61,8 @@ function Home() {
               <img src={currentBook.coverImage} alt="coverImage" />
                 <h2>{currentBook.title}</h2>
                 <p>{currentBook.genre}</p>
-                <p> <Link to={`/book-details/${currentBook._id}`}> {/* o q entra aqui para identificar o book? */}
-              <Button variant="outline-primary">See More</Button>{" "}
+                <p> <Link to={`/book-details/${currentBook._id}`}>
+              <Button variant="info">See Details</Button>{" "}
             </Link></p>
               </div>
             );
