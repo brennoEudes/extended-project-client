@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
 import { AuthContext } from "../../contexts/authContext";
+import BookForm from "../../components/BookForm/style.modules.css";
+import { Button } from "react-bootstrap";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -27,7 +29,6 @@ function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-// abaixo, alterei "/login" para "/user/login"
     try {
       const response = await api.post("/user/login", state);
       console.log(response);
@@ -48,39 +49,46 @@ function Login(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
+    <div className="container">
+      <div className="bookForm">
+        <h1 className="bookFormHeader">Login</h1>
+        <form className="bookFormFields" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="signupFormEmail">E-mail</label>
+            <input
+              type="email"
+              name="email"
+              id="signupFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+            />
+          </div>
 
-      <div>
-        <label htmlFor="signupFormEmail">E-mail Address</label>
-        <input
-          type="email"
-          name="email"
-          id="signupFormEmail"
-          value={state.email}
-          error={errors.email}
-          onChange={handleChange}
-        />
+          <div>
+            <label htmlFor="signupFormPassword">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="signupFormPassword"
+              value={state.password}
+              error={errors.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="btn-actionsBook">
+            <Button type="submit" variant="success" size="lg">
+              Login
+            </Button>{" "}
+          </div>
+          <div className="link-signup">
+            <Link to="/signup">
+              Don't have an account? Click here to signup!
+            </Link>
+          </div>
+        </form>
       </div>
-
-      <div>
-        <label htmlFor="signupFormPassword">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="signupFormPassword"
-          value={state.password}
-          error={errors.password}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <button type="submit">Login!</button>
-
-        <Link to="/signup">Don't have an account? Click here to signup!</Link>
-      </div>
-    </form>
+    </div>
   );
 }
 
