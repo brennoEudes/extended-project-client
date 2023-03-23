@@ -25,12 +25,16 @@ function CreateBook() {
   }
 
   async function handleUploadImage(event) {
-    const uploadData = new FormData();
+    try {
+      const uploadData = new FormData();
 
     uploadData.append("picture", img);
 
     const response = await api.post("/book/upload-image", uploadData);
     return response.data.url;
+    } catch (err) {
+      console.log (err)
+    }
   }
 
   async function handleSubmit(event) {
@@ -62,7 +66,7 @@ console.log(imgUrl)
         <label>Title:</label>
         <input
           type="text"
-          required="true"
+          required
           name="title"
           value={form.title}
           onChange={handleChange}
@@ -70,7 +74,7 @@ console.log(imgUrl)
         <label>Author:</label>
         <input
           type="text"
-          required="true"
+          required
           name="author"
           value={form.author}
           onChange={handleChange}
@@ -78,7 +82,7 @@ console.log(imgUrl)
         <label>Synopsis:</label>
         <input
           type="text"
-          required="true"
+          required
           name="synopsis"
           value={form.synopsis}
           onChange={handleChange}
@@ -86,7 +90,7 @@ console.log(imgUrl)
         <label>Release Year:</label>
         <input
           type="Number"
-          required="true"
+          required
           name="releaseYear"
           value={form.releaseYear}
           onChange={handleChange}
@@ -94,7 +98,7 @@ console.log(imgUrl)
         <label>Genre:</label>
         <input
           type="text"
-          required="true"
+          required
           name="genre"
           value={form.genre}
           onChange={handleChange}
@@ -107,8 +111,6 @@ console.log(imgUrl)
           value={form.coverImage}
           onChange={handleImage}
         />
-
-        <h2>coverImage!</h2>
 
         <button type="submit">Create book!</button>
       </form>
