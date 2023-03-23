@@ -13,6 +13,9 @@ function Home() {
 
   const { setLoggedInUser } = useContext(AuthContext);
 
+  // const { LoggedInUser } = useContext(AuthContext);
+  // console.log (LoggedInUser) p/ver quais dados estão vindo
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +39,9 @@ function Home() {
     setLoggedInUser(null);
     navigate("/login");
   }
+
+  // {loggedInUser.user ? (<p>{loggedInUser.user.name}</p>) :  <link>login</link>}
+  
 
   return (
     <>
