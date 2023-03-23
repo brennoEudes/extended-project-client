@@ -4,7 +4,6 @@ const AuthContext = createContext({ token: "", user: {} });
 
 function AuthContextComponent(props) {
   const [loggedInUser, setLoggedInUser] = useState({ token: "", user: {} });
-  const [loading, setLoading] = useState(true);
 
   // função para verificar e armazenar os dados do usuário logado no front.
   useEffect(() => {
@@ -14,20 +13,13 @@ function AuthContextComponent(props) {
 
     if (parsedStoredUser.user) {
       setLoggedInUser({ ...parsedStoredUser });
+    } else {
+      setLoggedInUser(null);
     }
   }, []);
 
-  useEffect(() => setLoading(false), [loggedInUser.user]);
-
-  function handleLogout() {
-    window.localStorage.removeItem("loggedInUser");
-    setLoggedInUser({ token: "", user: {} });
-  }
-
   return (
-    <AuthContext.Provider
-      value={{ loggedInUser, setLoggedInUser, loading, handleLogout }}
-    >
+    <AuthContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       {props.children}
     </AuthContext.Provider>
   );
