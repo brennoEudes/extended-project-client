@@ -9,6 +9,7 @@ function CreateBook() {
     synopsis: "",
     releaseYear: 0,
     genre: "",
+    coverImage: ""
   });
 
   const [img, setImg] = useState("");
@@ -42,6 +43,7 @@ if (imgUrl === undefined) {
   imgUrl = 'https://res.cloudinary.com/dptsbfvan/image/upload/v1679533946/pictures/file_nqffuu.png'
 }
 
+console.log(imgUrl)
       const response = api.post("/book/create-book", {
         ...form,
         coverImage: imgUrl,

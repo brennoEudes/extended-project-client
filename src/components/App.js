@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../pages/Home";
 import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
-import ProtectedRoute from "../pages/auth/ProtectedRoute";
+import { ProtectedRoute } from "../pages/auth/ProtectedRoute";
 import CreateBook from "../pages/auth/CreateBook";
 import BookDetails from "../pages/BookDetails";
 import BookEdit from "../pages/auth/BookEdit";

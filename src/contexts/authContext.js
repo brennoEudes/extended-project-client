@@ -1,9 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
 
-const AuthContext = createContext({ token: "", user: {} });
+const AuthContext = createContext(null);
 
 function AuthContextComponent(props) {
-  const [loggedInUser, setLoggedInUser] = useState({ token: "", user: {} });
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   // função para verificar e armazenar os dados do usuário logado no front.
   useEffect(() => {
@@ -11,8 +11,8 @@ function AuthContextComponent(props) {
 
     const parsedStoredUser = JSON.parse(storedUser || '""');
 
-    if (parsedStoredUser.user) {
-      setLoggedInUser({ ...parsedStoredUser });
+    if (parsedStoredUser.token) {
+      setLoggedInUser(parsedStoredUser);
     } else {
       setLoggedInUser(null);
     }

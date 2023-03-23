@@ -1,21 +1,20 @@
-import React, { useContext } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/authContext";
+export function ProtectedRoute(props) {
+  const { component: Component } = props;
+  const navigate = useNavigate();
 
-function ProtectedRoute({ component: Component }) {
-  const location = useLocation();
-  const { loggedInUser, loading } = useContext(AuthContext);
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const parsedUser = JSON.parse(loggedInUser || '""');
 
-  if (loggedInUser.user._id) {
-    return <Component />;
-  } else {
-    return <Navigate to="/login" state={{ from: location }} replace={true} />;
-  }
+  useEffect(() => {
+    console.log(parsedUser);
+    if (!parsedUser.token) {
+      navigate("/login");
+    }
+  }, []);
+
+  return <Component />;
 }
-
-export default ProtectedRoute;
