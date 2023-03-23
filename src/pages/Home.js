@@ -42,7 +42,6 @@ function Home() {
 
   // {loggedInUser.user ? (<p>{loggedInUser.user.name}</p>) :  <link>login</link>}
   
-
   return (
     <>
       {!isLoading && (
@@ -69,9 +68,7 @@ function Home() {
           })}
 
           <div className="d-flex flex-column align-items-center">
-            <button variant="danger" onClick={handleLoggout}>
-              Exit
-            </button>
+            <Button variant="danger" onClick={handleLoggout}>Exit</Button>{' '}
           </div>
         </div>
       )}
