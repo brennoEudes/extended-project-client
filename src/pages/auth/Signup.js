@@ -85,10 +85,11 @@ function Signup(props) {
               Create Account
             </Button>{" "}
             </div>
-
+            <div className="link-signup">
             <Link to="/login">
               Already have an account? Click here to login.
             </Link>
+            </div>
           </div>
         </form>
       </div>
