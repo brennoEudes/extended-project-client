@@ -15,7 +15,7 @@ function NavBar() {
         <div className="navBar-btn">
           {loggedInUser ? (
             <>
-            <p>Olá, {loggedInUser.user.name}.</p> 
+            <p>Hi, {loggedInUser.user.name}.</p> 
           <Link to="/">
             <Button variant="outline-light">Home</Button>{" "}
           </Link>
