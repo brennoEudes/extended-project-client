@@ -8,7 +8,7 @@ function NavBar() {
     <div className="navBar">
     <h1>Special Library 📚</h1>
       <Link to="/">
-        <Button variant="outline-light">My Library</Button>{" "}
+        <Button variant="outline-light">Home</Button>{" "}
       </Link>
     </div>
     </>

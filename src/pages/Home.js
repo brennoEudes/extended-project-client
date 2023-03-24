@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 
 import api from "../apis/api";
 import { Link, useNavigate } from "react-router-dom";
+import BookForm from "../components/BookForm/style.modules.css";
 
 function Home() {
   const [books, setBooks] = useState([]);
@@ -44,21 +45,24 @@ function Home() {
 
   return (
     <>
-      {!isLoading && (
-        <div className="text-center">
-          <h1>See your special library and enjoy!</h1>
-          <div className="d-flex flex-column align-items-center">
-            <Link to="/create-book">
-              <Button variant="primary">Create book</Button>{" "}
-            </Link>
-          </div>
+      <div className="homeHeader">
+        <h1>See our special library and enjoy!</h1>
+        <Link to="/create-book">
+          <Button variant="primary">Create book</Button>{" "}
+        </Link>
+        <Button variant="outline-danger" onClick={handleLoggout}>
+          Exit
+        </Button>{" "}
+      </div>
 
+      {!isLoading && (
+        <div className="homeCard">
           {books.map((currentBook) => {
             return (
               <div key={currentBook._id}>
                 <img src={currentBook.coverImage} alt="coverImage" />
-                <h2>{currentBook.title}</h2>
-                <p>{currentBook.genre}</p>
+                <h2>Title: {currentBook.title}</h2>
+                <p>Gender: {currentBook.genre}</p>
                 <p>
                   {" "}
                   <Link to={`/book-details/${currentBook._id}`}>
@@ -68,12 +72,6 @@ function Home() {
               </div>
             );
           })}
-
-          <div className="d-flex flex-column align-items-center">
-            <Button variant="danger" onClick={handleLoggout}>
-              Exit
-            </Button>{" "}
-          </div>
         </div>
       )}
     </>

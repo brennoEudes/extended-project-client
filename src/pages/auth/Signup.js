@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
+import { Button } from "react-bootstrap";
 
 function Signup(props) {
   const [state, setState] = useState({ name: "", password: "", email: "" });
@@ -22,9 +23,8 @@ function Signup(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-// abaixo, alterei "/signup" para "/user/signup"
     try {
-      const response = await api.post("/user/signup", state); 
+      const response = await api.post("/user/signup", state);
       setErrors({ name: "", password: "", email: "" });
       navigate("/login");
     } catch (err) {
@@ -38,51 +38,61 @@ function Signup(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Signup!</h1>
+    <div className="container">
+      <div className="bookForm">
+        <h1 className="bookFormHeader">Create your free account!</h1>
+        <form className="bookFormFields" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="signupFormName">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="signupFormName"
+              value={state.name}
+              error={errors.name}
+              onChange={handleChange}
+            />
+          </div>
 
-      <div>
-        <label htmlFor="signupFormName">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="signupFormName"
-          value={state.name}
-          error={errors.name}
-          onChange={handleChange}
-        />
+          <div>
+            <label htmlFor="signupFormEmail">E-mail:</label>
+            <input
+              type="email"
+              name="email"
+              id="signupFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="signupFormPassword">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="signupFormPassword"
+              value={state.password}
+              error={errors.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+          <div className="btn-actionsBook">
+            {/* <button type="submit">Signup!</button> */}
+            <Button type="submit" variant="success" size="lg">
+              Create Account
+            </Button>{" "}
+            </div>
+
+            <Link to="/login">
+              Already have an account? Click here to login.
+            </Link>
+          </div>
+        </form>
       </div>
-
-      <div>
-        <label htmlFor="signupFormEmail">E-mail Address</label>
-        <input
-          type="email"
-          name="email"
-          id="signupFormEmail"
-          value={state.email}
-          error={errors.email}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="signupFormPassword">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="signupFormPassword"
-          value={state.password}
-          error={errors.password}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <button type="submit">Signup!</button>
-
-        <Link to="/login">Already have an account? Click here to login.</Link>
-      </div>
-    </form>
+    </div>
   );
 }
 
