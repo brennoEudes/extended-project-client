@@ -39,7 +39,7 @@ function BookDetails() {
       <div className="container">
         
         <div className="bookForm">
-        <h1 className="bookFormHeader">Book Details</h1>
+        <h1 className="bookFormHeader">See book details!</h1>
           <div className="bookFormFields">
             <div className="coverBook">
               <img src={detail.coverImage} alt="coverImage" />
