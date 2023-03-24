@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import BookForm from "../../components/BookForm/style.modules.css";
+import "../../components/BookForm/style.modules.css";
 import Button from "react-bootstrap/Button";
 
 function BookDetails() {

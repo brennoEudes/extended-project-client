@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 
 import api from "../apis/api";
 import { Link, useNavigate } from "react-router-dom";
-import BookForm from "../components/BookForm/style.modules.css";
+import "../components/BookForm/style.modules.css";
 
 function Home() {
   const [books, setBooks] = useState([]);
@@ -60,7 +60,7 @@ function Home() {
           {books.map((currentBook) => {
             return (
               <div key={currentBook._id}>
-                <img src={currentBook.coverImage} alt="coverImage" />
+                <img src={currentBook.coverImage} alt="coverImage"/>
                 <h2>Title: {currentBook.title}</h2>
                 <p>Gender: {currentBook.genre}</p>
                 <p>
