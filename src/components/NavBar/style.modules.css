@@ -8,4 +8,16 @@
   display: flex;
   justify-content: space-around;
   padding: 5px;
+  align-items: center;
+}
+
+.navBar-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navBar-btn p {
+  text-align: center;
+  margin: 0px;
 }

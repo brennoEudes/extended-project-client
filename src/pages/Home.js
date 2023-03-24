@@ -14,9 +14,6 @@ function Home() {
 
   const { setLoggedInUser } = useContext(AuthContext);
 
-  // const { LoggedInUser } = useContext(AuthContext);
-  // console.log (LoggedInUser) p/ver quais dados estão vindo
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -41,26 +38,26 @@ function Home() {
     navigate("/login");
   }
 
-  // {loggedInUser.user ? (<p>{loggedInUser.user.name}</p>) :  <link>login</link>}
-
   return (
     <>
       <div className="homeHeader">
         <h1>See our special library and enjoy!</h1>
-        <Link to="/create-book">
-          <Button variant="primary">Create book</Button>{" "}
-        </Link>
-        <Button variant="outline-danger" onClick={handleLoggout}>
-          Exit
-        </Button>{" "}
+        <div className="home-btn">
+          <Link to="/create-book">
+            <Button variant="primary">Create book</Button>{" "}
+          </Link>
+          <Button variant="outline-danger" onClick={handleLoggout}>
+            Exit
+          </Button>{" "}
+        </div>
       </div>
 
       {!isLoading && (
-        <div className="homeCard">
+        <div className="homeAll">
           {books.map((currentBook) => {
             return (
-              <div key={currentBook._id}>
-                <img src={currentBook.coverImage} alt="coverImage"/>
+              <div className="homeCard" key={currentBook._id}>
+                <img src={currentBook.coverImage} alt="coverImage" />
                 <h2>Title: {currentBook.title}</h2>
                 <p>Gender: {currentBook.genre}</p>
                 <p>
